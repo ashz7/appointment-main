@@ -1,0 +1,36 @@
+{% extends "_inner_layout.html" %}
+{% block title %}My Appointments{% endblock %}
+{% block section %}
+    <h1>My Appointments</h1>
+{% endblock %}
+{% block article %}
+    <h4>Welcome {{ session["full_name"] }},</h4>
+    <h5>Upcoming Appointments:</h5>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Doctor</th>
+                <th scope="col">Charge</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if upcoming_appointments %}
+                {% for appointment in upcoming_appointments %}
+                    <tr>
+                        <td scope="row">{{ appointment.first_name }} {{ appointment.last_name }}</td>
+                        <td scope="row">{{ appointment.charge }}</td>
+                        <td scope="row">{{ appointment.hour }}
+                            on {{ appointment.day }}/{{ appointment.month }}/{{ appointment.year }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">You don't have an appointment yet.</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

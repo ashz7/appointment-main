@@ -1,0 +1,42 @@
+{% extends "_inner_layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block section %}
+    <h1>Your profile</h1>
+{% endblock %}
+{% block article %}
+    <h4>Welcome {{ session["full_name"] }},</h4>
+    <h5>Uid: {{ person.ssn }}</h5>
+    <h5>Email: {{ person.email }}</h5>
+    <a href="./change-email" class="btn btn-outline-primary mb-3">Change your email</a>
+    <a href="./change-password" class="btn btn-outline-primary mb-3">Change your password</a>
+    <h5>Gender: {{ person.gender }}</h5>
+    <h5>Birth date: {{ person.birth_date }}</h5>
+    <h5>Phones:</h5>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Phone Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if phones %}
+                {% for phone in phones %}
+                    <tr>
+                        <td scope="row">{{ phone.contact_number }}</td>
+                        <td scope="row"><a href="./modify-phone/{{ phone.contact_number }}"
+                                           class="btn btn-danger">Update</a></td>
+                        <td scope="row"><a href="./delete-phone/{{ phone.contact_number }}"
+                                           class="btn btn-danger">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">You don't have a phone logged in yet.</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <a href="./add-phone" class="btn btn-outline-primary mb-3">Add a phone number</a>
+{% endblock %}

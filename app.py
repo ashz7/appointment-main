@@ -9,9 +9,10 @@ app = Flask(__name__)
 app.secret_key = "too_secret_to_reveal"
 app.static_folder = 'static'
 
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_HOST"] = "db"
+app.config["MYSQL_USER"] = "user"
 app.config["MYSQL_PASSWORD"] = "root"
+app.config["MYSQL_PORT"] = "3306"
 app.config["MYSQL_DB"] = "balco"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
